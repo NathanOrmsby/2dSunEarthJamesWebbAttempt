@@ -1,4 +1,5 @@
-Summary
+Summary:
+
 This project is an attempt of simulating the Sun Earth James Webb system for the efforts of extracting lyapunov exponents. 
 I wrote this after my 3dSim in an attempt to improve computational efficiency and the way I implemented the system. 
 Unfortunately, this approach does not work fundamentally as the James Webb Telescope in the L2 lagrange point orbits in a plane perpendicular to the two other coordinates.
