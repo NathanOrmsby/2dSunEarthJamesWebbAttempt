@@ -19,22 +19,25 @@ double *singleProbeChaos(Planet *earth, Planet sun, Probe *jw, double dt, int to
 void initializePerturbations(Probe *jw, int NUMPERTURBED);
 
 // RK4 for sun earth system with single james webb with perturbations
-void singleProbeRK4(Planet *earth, Planet sun, Probe *jw, int NUMPERTURBED, double dt);
+void singleProbeRK4(Planet *earth, Planet *sun, Probe *jw, int NUMPERTURBED, double dt);
+// Calculates and stores gravitational accelerations on earth, james webb, perturbations, and h2
+void calculateAccels(Planet *earth, Planet *sun, Probe *jw, int NUMPERTURBED, vector2 *earthAccel, vector2 *jwAccel, vector2 *perturbedAccels, vector2 *h2Accels);
+// Stores velocities in kVels
+void extractVel(Planet *earth, Planet *sun, Probe *jw, int NUMPERTURBED, vector2 *earthVel, vector2 *jwVel, vector2 *perturbedVels, vector2 *h2Vels);
 // Calculates and stores gravitational accelerations on earth, james webb, perturbations, and h2. Helper function for RK4
 void extractkAccelSingleProbe(Planet earth, Planet sun, Probe jw, int NUMPERTURBED, vector2 *accels);
 // Stores velocities in kVel: Helper function for RK4
 void extractkVelSingleProbe(Planet earth, Probe jw, int NUMPERTURBED, vector2 *vels);
+// Moves Objects forward using kAccel and velocity
+void rk4Step(Planet *earth, Probe *jw, int NUMPERTURBED, vector2 *earthAccel, vector2 *jwAccel, vector2 *perturbedAccels, vector2 *h2Accels, double dt);
 // Moves objects forward using kAccel and kVel: Helper function for RK4
 void singleProbeRK4Step(Probe *jwCopy, Planet *earthCopy, int NUMPERTURBED, vector2 *accels, vector2 *vels, double dt);
-
 // Handles the timestep processes for calculating h1 and h2 lyapunov exponents
-void lyapunovChaosStuffSingle(Probe *jw, int NUMPERTURBED, double *LfSums, double initialDist, double *areaSum, double initialArea);
+void lyapunovChaosStuff(Probe *jw, int NUMPERTURBED, double *LfSums, double initialDist, double *areaSum, double initialArea, double RADIUS);
 // Gram schmidt to re-orthonormalize unit vectors
-void gramSchmidtRenormalizationh2Single(Probe *jw, int NUMPERTURBED, vector2 v1, vector2 v2);
+void gramSchmidtRenormalizationh2(Probe *jw, int NUMPERTURBED, vector2 *v1, vector2 *v2, double RADIUS);
 // Extracts lyapunov exponents for single probe with perturbations
-void extractLyapunovSingleProbe(double *LfSums, double areaSum, int NUMPERTURBED, double *lyapunovs, double t);
-// Writes position data to csv file for all objects in scene for plotting
-void dataToFile(vector2 **data, int dataLen, int NUMPERTURBED);
+void extractLyapunovs(double *LfSums, double areaSum, int NUMPERTURBED, double *lyapunovs, double t);
 
 
 

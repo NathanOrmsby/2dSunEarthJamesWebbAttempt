@@ -9,6 +9,7 @@
 #define HEADERS_CIRCLEGENERATOR_H_
 
 #include <string>
+#include "vector2.h"
 
 
 void toFile(std::string fileName, double **data, int dataLen);

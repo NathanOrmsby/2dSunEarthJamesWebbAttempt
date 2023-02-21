@@ -15,7 +15,12 @@
 void writeCircleToFile(int numPoints, double radius)
 {
 	double **data = (double **)malloc(numPoints * sizeof(double *));
-	for (int i = 0; i < numPoints; ++i) { data[i] = (double *)malloc(2 * sizeof(double)); }
+
+	for (int i = 0; i < numPoints; ++i)
+	{
+		data[i] = (double *)malloc(2 * sizeof(double));
+	}
+
 	uniformCircle(numPoints, data, radius);
 
 	std::string fname = "unitCircle.csv";
@@ -31,7 +36,7 @@ void uniformCircle(int numPoints, double **arr, double r)
 	for (int i = 0; i < numPoints; ++i)
 	{
 		double theta = i * d;
-		arr[i][0] = r * cos(theta); arr[i][2] = r * sin(theta);
+		arr[i][0] = r * cos(theta); arr[i][1] = r * sin(theta);
 	}
 }
 
@@ -47,5 +52,7 @@ void toFile(std::string fileName, double **data, int dataLen)
 	}
 	file.close();
 }
+
+
 
 
